@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://pcg5mcediueb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mgcj"]
+
+[node name="CanvasGroup" type="CanvasGroup"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 60.0
+offset_top = 39.0
+offset_right = 110.0
+offset_bottom = 65.0
+text = "health"
+label_settings = SubResource("LabelSettings_8mgcj")

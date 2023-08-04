@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://bg4svalnf2l8l"]
+
+[ext_resource type="PackedScene" uid="uid://ndsnlmj8jeit" path="res://scenes/Player.tscn" id="1_5awqu"]
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_yitai"]
+[ext_resource type="PackedScene" uid="uid://df0xqergnc8oj" path="res://scenes/BaseLevel.tscn" id="2_k6fqd"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="6_mci77"]
+[ext_resource type="AudioStream" uid="uid://bm5ek56rlfr66" path="res://sounds/night_forest.ogg" id="7_1ues0"]
+[ext_resource type="Script" path="res://scripts/Health.gd" id="8_ejdfv"]
+[ext_resource type="PackedScene" uid="uid://ch4jqcieolth6" path="res://scenes/street_lamp.tscn" id="9_lrsno"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ldy6y"]
+vertices = PackedVector2Array(1027, 70, 1137, 12, 1138, 629, 1026, 250, 1022, 259, 901, 508, 901, 452, 965, 260, 893, 442, 957, 256, 706, 441, 897, 130, 957, 130, 14, 628, 14, 459, 305, 459, 305, 513, 132, 186, 133, 131, 305, 11, 307, 127, 306, 258, 127, 122, 15, 11, 65, 122, 305, 373, 13, 373, 68, 199, 126, 198, 397, 126, 399, 10, 898, 60, 1019, 60, 892, 125, 893, 515, 706, 515, 698, 507, 699, 451, 59, 129, 59, 187, 320, 244, 321, 138, 383, 244, 384, 138, 320, 523, 395, 256, 892, 68, 383, 522, 398, 510)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(4, 2, 5, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(10, 11, 12, 9, 8), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20, 21), PackedInt32Array(19, 18, 22), PackedInt32Array(23, 19, 22, 24), PackedInt32Array(21, 25, 26, 27, 28), PackedInt32Array(29, 30, 1, 31), PackedInt32Array(1, 0, 32), PackedInt32Array(33, 11, 10), PackedInt32Array(34, 5, 2), PackedInt32Array(34, 2, 13, 35), PackedInt32Array(36, 35, 13), PackedInt32Array(37, 36, 13), PackedInt32Array(23, 24, 38), PackedInt32Array(26, 23, 38, 39), PackedInt32Array(26, 39, 27), PackedInt32Array(21, 28, 17), PackedInt32Array(40, 21, 20, 41), PackedInt32Array(42, 40, 41, 43), PackedInt32Array(13, 16, 44), PackedInt32Array(10, 45, 42, 43, 29, 46, 33), PackedInt32Array(10, 37, 13, 47), PackedInt32Array(1, 32, 31), PackedInt32Array(29, 31, 46), PackedInt32Array(48, 45, 10), PackedInt32Array(47, 48, 10), PackedInt32Array(47, 13, 44)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(15, 11, 305, 11, 307, 127, 321, 138, 384, 138, 397, 126, 399, 10, 1137, 12, 1138, 629, 14, 628, 14, 459, 305, 459, 305, 513, 320, 523, 383, 522, 398, 510, 395, 256, 383, 244, 320, 244, 306, 258, 305, 373, 13, 373), PackedVector2Array(892, 68, 898, 60, 1019, 60, 1027, 70, 1026, 250, 1022, 259, 965, 260, 957, 256, 957, 130, 897, 130, 892, 125), PackedVector2Array(699, 451, 706, 441, 893, 442, 901, 452, 901, 508, 893, 515, 706, 515, 698, 507), PackedVector2Array(59, 129, 65, 122, 127, 122, 133, 131, 132, 186, 126, 198, 68, 199, 59, 187)])
+
+[node name="Level" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_5awqu")]
+z_index = 99
+position = Vector2(-169, 735)
+collision_mask = 25
+
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(529, 309)
+script = ExtResource("6_mci77")
+player = NodePath("../CharacterBody2D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 9
+
+[node name="Health" type="Label" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 14.0
+offset_right = 89.0
+offset_bottom = 40.0
+text = "health :)"
+script = ExtResource("8_ejdfv")
+
+[node name="Lamps" type="Node" parent="."]
+
+[node name="StreetLamp" parent="Lamps" instance=ExtResource("9_lrsno")]
+
+[node name="StreetLamp2" parent="Lamps" instance=ExtResource("9_lrsno")]
+position = Vector2(157, 16)
+rotation = 1.5708
+
+[node name="StreetLamp3" parent="Lamps" instance=ExtResource("9_lrsno")]
+position = Vector2(620, 16)
+rotation = 1.5708
+
+[node name="StreetLamp4" parent="Lamps" instance=ExtResource("9_lrsno")]
+position = Vector2(1137, 485)
+rotation = -3.14159
+
+[node name="StreetLamp5" parent="Lamps" instance=ExtResource("9_lrsno")]
+position = Vector2(157, 464)
+rotation = 1.5708
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("1_yitai")
+
+[node name="SpawnPoints" type="Node" parent="EnemySpawner"]
+
+[node name="Spawn" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(81, 292)
+
+[node name="Spawn2" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(67, 502)
+
+[node name="Spawn3" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(1061, 563)
+
+[node name="Spawn4" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(1083, 49)
+
+[node name="Spawn5" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(455, 53)
+
+[node name="SpawnedEnemies" type="Node" parent="EnemySpawner"]
+
+[node name="World" type="Node" parent="."]
+
+[node name="Ambience" type="AudioStreamPlayer2D" parent="World"]
+position = Vector2(530, 309)
+stream = ExtResource("7_1ues0")
+volume_db = -4.0
+autoplay = true
+max_distance = 20000.0
+
+[node name="BaseLevel" parent="World" instance=ExtResource("2_k6fqd")]
+z_index = -99
+
+[node name="CanvasModulate" type="CanvasModulate" parent="World"]
+position = Vector2(-191, -65)
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
+navigation_polygon = SubResource("NavigationPolygon_ldy6y")

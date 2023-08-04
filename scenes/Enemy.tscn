@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg7rkmjhv21eh"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_dnbcd"]
+[ext_resource type="PackedScene" uid="uid://df2dg0pu0w4a0" path="res://scenes/HealthKit.tscn" id="2_bo10o"]
+[ext_resource type="AudioStream" uid="uid://bawdktx15111j" path="res://sounds/damage.ogg" id="3_p14uw"]
+[ext_resource type="Texture2D" uid="uid://bf7nlgrffrvy1" path="res://sprites/zombie.png" id="3_x5sqt"]
+[ext_resource type="AudioStream" uid="uid://4qlf0ukqigwi" path="res://sounds/zombie.ogg" id="5_tokwh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrvhe"]
+radius = 10.0499
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(156, 541)
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_dnbcd")
+health_kit = ExtResource("2_bo10o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_nrvhe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_x5sqt")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_p14uw")
+volume_db = -8.0
+
+[node name="ZombieGrowl" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_tokwh")
+volume_db = -5.0
+max_distance = 100.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://daphbk4h288ud"]
+
+[ext_resource type="Texture2D" uid="uid://bpyg8gr705nr4" path="res://sprites/bullet.png" id="1_4i3f7"]
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_i6hcy"]
+[ext_resource type="AudioStream" uid="uid://c2ad0xdhkh3yn" path="res://sounds/impact.ogg" id="3_pqolk"]
+[ext_resource type="Texture2D" uid="uid://c7cxemdknqf4s" path="res://sprites/spotlight.webp" id="4_xuyls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8lrg"]
+size = Vector2(12, 4)
+
+[node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_i6hcy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4i3f7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_h8lrg")
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_pqolk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.19209e-07, 1.19209e-07)
+scale = Vector2(0.0390625, 0.0234375)
+texture = ExtResource("4_xuyls")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://df2dg0pu0w4a0"]
+
+[ext_resource type="Script" path="res://scenes/HealthKit.gd" id="1_eiau1"]
+[ext_resource type="Texture2D" uid="uid://rokqwrninlry" path="res://sprites/healthkit.png" id="2_0amo5"]
+[ext_resource type="Texture2D" uid="uid://c7cxemdknqf4s" path="res://sprites/spotlight.webp" id="3_1i6xa"]
+[ext_resource type="AudioStream" uid="uid://25dmvuifqxf1" path="res://sounds/health.ogg" id="4_ufe0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki3gl"]
+
+[node name="HealthKit" type="Area2D"]
+position = Vector2(555, 184)
+scale = Vector2(0.75, 0.75)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_eiau1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ki3gl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0amo5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.768627, 0, 0.180392, 1)
+energy = 0.5
+texture = ExtResource("3_1i6xa")
+texture_scale = 0.2
+
+[node name="Health" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-740, -245.333)
+scale = Vector2(1.33333, 1.33333)
+stream = ExtResource("4_ufe0n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

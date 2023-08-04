@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg4svalnf2l8l"]
+
+[ext_resource type="PackedScene" uid="uid://ndsnlmj8jeit" path="res://Player.tscn" id="1_wgxm1"]
+[ext_resource type="PackedScene" uid="uid://df0xqergnc8oj" path="res://BaseLevel.tscn" id="2_pesq7"]
+[ext_resource type="Script" path="res://Enemy.gd" id="3_0gcmr"]
+[ext_resource type="Texture2D" uid="uid://ccn6y37hj8mq4" path="res://icon.svg" id="3_2usdd"]
+[ext_resource type="Script" path="res://PlayerCamera.gd" id="5_dqodo"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ldy6y"]
+vertices = PackedVector2Array(1141, 5, 1139, 631, 1032, 264, 1031, 53, 903, 526, 911, 435, 951, 264, 696, 522, 14, 629, 393, 527, 949, 144, 695, 438, 408, 241, 885, 146, 315, 528, 307, 456, 12, 477, 15, 453, 15, 446, 304, 241, 313, 379, 5, 379, 395, 144, 886, 54, 306, 143, 383, 4, 317, 4, 5, 3, 319.863, 3.55433, 4, 380)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5, 6), PackedInt32Array(7, 4, 1, 8, 9), PackedInt32Array(10, 6, 5, 11, 12, 13), PackedInt32Array(9, 12, 11, 7), PackedInt32Array(14, 9, 8), PackedInt32Array(15, 14, 8, 16, 17), PackedInt32Array(17, 16, 18), PackedInt32Array(19, 20, 21), PackedInt32Array(22, 23, 13, 12, 19), PackedInt32Array(24, 22, 19, 21), PackedInt32Array(23, 22, 25, 0), PackedInt32Array(26, 24, 21, 27), PackedInt32Array(0, 3, 23), PackedInt32Array(28, 0, 25), PackedInt32Array(28, 25, 26, 27), PackedInt32Array(29, 27, 21), PackedInt32Array(29, 21, 17), PackedInt32Array(17, 18, 29)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1141, 5, 319.863, 3.55433, 5, 3, 4, 380, 15, 446, 12, 477, 14, 629, 1139, 631), PackedVector2Array(886, 54, 1031, 53, 1032, 264, 951, 264, 949, 144, 885, 146), PackedVector2Array(306, 143, 395, 144, 383, 4, 317, 4), PackedVector2Array(304, 241, 408, 241, 393, 527, 315, 528, 307, 456, 15, 453, 5, 379, 313, 379), PackedVector2Array(695, 438, 911, 435, 903, 526, 696, 522)])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gwql"]
+radius = 12.0
+
+[node name="Level" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_wgxm1")]
+z_index = 99
+scale = Vector2(0.75, 0.75)
+
+[node name="BaseLevel" parent="." instance=ExtResource("2_pesq7")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0.00784314, 0, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ldy6y")
+
+[node name="Enemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("target") groups=["enemy"]]
+position = Vector2(75, 592)
+collision_layer = 3
+script = ExtResource("3_0gcmr")
+target = NodePath("../CharacterBody2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_3gwql")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(0, 1)
+scale = Vector2(0.191406, 0.191406)
+texture = ExtResource("3_2usdd")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy"]
+
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("5_dqodo")
+player = NodePath("../CharacterBody2D")
