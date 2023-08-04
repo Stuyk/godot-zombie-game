@@ -10,4 +10,4 @@ They will hurt you.
 
 ## Preview
 
-<video src="https://www.youtube.com/watch?v=dMBbb_BKyBs" width=180/>
+[![Demo](https://i.ytimg.com/vi/dMBbb_BKyBs/hqdefault.jpg)](https://www.youtube.com/watch?v=dMBbb_BKyBs)
