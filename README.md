@@ -11,3 +11,7 @@ They will hurt you.
 ## Preview
 
 [![Demo](https://i.ytimg.com/vi/dMBbb_BKyBs/hqdefault.jpg)](https://www.youtube.com/watch?v=dMBbb_BKyBs)
+
+## Try
+
+[https://stuyk.itch.io/zombie-shootin](https://stuyk.itch.io/zombie-shootin)
